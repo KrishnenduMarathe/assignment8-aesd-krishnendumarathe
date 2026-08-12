@@ -28,6 +28,19 @@ then
 else
 	echo "USING EXISTING BUILDROOT CONFIG"
 	echo "To force update, delete .config or make changes using make menuconfig and build again."
+
+	# custom remove already backported patch
+	backported_patches=(
+		"buildroot/board/qemu/patches/linux/0001-mips-Add-std-flag-specified-in-KBUILD_CFLAGS-to-vdso.patch"
+		"buildroot/board/qemu/patches/linux/0002-powerpc-boot-Fix-build-with-gcc-15.patch"
+	)
+	for bp in "${backported_patches[@]}"; do
+		if [ -f "$bp" ]; then
+			echo "--> removng patch $bp"
+			rm "$bp"
+		fi
+	done
+
 	make -C buildroot BR2_EXTERNAL=${EXTERNAL_REL_BUILDROOT}
 
 fi

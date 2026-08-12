@@ -19,9 +19,7 @@ jobs:
           - name: Install Dependencies
             run: |
               apt update
-              apt install -y nodejs openssh-client sshpass
-              apt install -y sed make binutils build-essential diffutils gcc g++ bash patch gzip bzip2 perl tar cpio unzip rsync file bc findutils wget
-              apt install -y qemu-system-arm qemu-efi-aarch64 cloud-image-utils netcat valgrind
+              apt install -y nodejs openssh-client sshpass sed make binutils build-essential diffutils gcc g++ bash patch gzip bzip2 perl tar cpio unzip rsync file bc findutils wget qemu-system-arm qemu-efi-aarch64 cloud-image-utils netcat valgrind
 
           - uses: webfactory/ssh-agent@v0.5.3
             with:
